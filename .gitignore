@@ -14,6 +14,7 @@ reports/*.json
 # 编辑器与系统
 .vscode/*
 !.vscode/settings.json
+!.vscode/launch.json
 .idea/
 Thumbs.db
 desktop.ini

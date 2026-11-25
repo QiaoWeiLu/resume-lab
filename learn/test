@@ -1,0 +1,9 @@
+from collections import Counter
+
+words = ['a','b','a']
+# print(C)
+
+c = {}
+for word in words:
+    c[word] = c.get(word, 0) + 1
+print(c) 

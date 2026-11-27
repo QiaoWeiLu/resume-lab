@@ -1,0 +1,26 @@
+2026-11-24 08:00:01 INFO [system] boot sequence started
+2026-11-24 08:00:03 DEBUG [system] config loaded from default.json
+2026-11-24 08:00:05 INFO [camera] front camera stream opened
+2026-11-24 08:00:08 INFO [perception] model version v2.3 loaded
+2026-11-24 08:00:12 WARN [perception] image brightness below threshold
+2026-11-24 08:00:15 INFO [planner] route buffer initialized
+2026-11-24 08:00:20 INFO [control] steering loop ready
+2026-11-24 08:00:25 DEBUG [can] 120 frames received
+2026-11-24 08:05:11 INFO [planner] route updated
+2026-11-24 08:05:30 WARN [can] cycle time 12ms exceeds 10ms
+2026-11-24 08:06:02 INFO [perception] lane detection ok
+2026-11-24 08:06:40 ERROR [perception] lane detection timeout
+2026-11-24 08:06:41 WARN [perception] fallback to previous lane
+2026-11-24 08:06:45 INFO [perception] lane detection recovered
+this line is broken and should be skipped
+2026-11-24 08:10:00 INFO [can] frame count reset
+2026-11-24 08:10:30 ERROR [control] steering angle out of range
+2026-11-24 08:10:31 INFO [control] steering angle clamped
+2026-11-24 08:12:00 WARN [system] cpu usage 85%
+2026-11-24 08:12:30 INFO [system] 系统自检完成
+2026-11-24 08:15:00 INFO [planner] obstacle ahead id 7
+2026-11-24 08:15:02 INFO [planner] re-planning triggered
+2026-11-24 08:15:10 ERROR [can] bus off event
+2026-11-24 08:15:12 INFO [can] bus recovered
+2026-11-24 08:20:00 INFO [system] heartbeat
+2026-11-24 08:20:05 ERROR [camera] stream frozen

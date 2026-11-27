@@ -14,8 +14,9 @@
 
 跑法：python tools\\log_parse.py
 """
-
+from pathlib import Path
 import re
+from collections import Counter
 
 # ---------------------------------------------------------------- 正则模式
 # 七个分组，用 re.VERBOSE 分行写、带注释。字段说明：
@@ -45,9 +46,22 @@ def read_text(path):
     - 先 utf-8，读失败（UnicodeDecodeError）再试 gbk
     - 两次都失败 → 返回 ""
     """
-    raise NotImplementedError
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            try:
+                return f.read()
+            except UnicodeDecodeError:
+                pass
+    except FileNotFoundError:
+        return ""
 
+    try:
+        with open(path, "r", encoding="gbk") as f:
+             return f.read()
+    except (FileNotFoundError,UnicodeDecodeError):
+            return ""
 
+    
 def parse_log(text):
     """把整段文本解析成 (records, dirty)。
 
@@ -60,7 +74,21 @@ def parse_log(text):
         3. LOG_RE.search(line)，None 就是脏行，dirty += 1
         4. 否则 m.groupdict() 直接得到一个五键字典，append 进 records
     """
-    raise NotImplementedError
+    dirty = 0
+    records = []
+    for line in text.splitlines():
+        line = line.strip()
+        if not line:
+            continue
+        m = LOG_RE.search(line)
+        if m is None:
+            dirty += 1
+            continue
+        records.append(m.groupdict())
+    return records, dirty
+
+
+
 
 
 def count_levels(records):
@@ -68,7 +96,8 @@ def count_levels(records):
 
     提示：可以直接用 Counter，也可以用 dict.get —— 你昨晚两种都写过。
     """
-    raise NotImplementedError
+    return Counter(r["level"] for r in records)
+
 
 
 def time_span(records):
@@ -77,7 +106,11 @@ def time_span(records):
     提示：日期时间写成 'YYYY-MM-DD HH:MM:SS' 这种格式时，
     字符串比大小就等于时间比大小（因为高位在左边）。所以不用转 datetime。
     """
-    raise NotImplementedError
+    if not records:
+        return ("", "")
+    dateandtime = [f"{i['date']} {i['time']}" for i in records]
+    return min(dateandtime),max(dateandtime)
+
 
 
 def module_messages(records):
@@ -86,7 +119,7 @@ def module_messages(records):
     提示：这就是昨晚 `for k, v in d.items()` 反过来用的场景 ——
     从字典里取两个键拼成元组：`(r["module"], r["msg"])`。
     """
-    raise NotImplementedError
+    return [(i['module'],i['msg']) for i in records]
 
 
 # ---------------------------------------------------------------- 自测区

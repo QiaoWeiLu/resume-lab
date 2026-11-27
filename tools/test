@@ -1,0 +1,23 @@
+from pathlib import Path
+import re
+
+
+def read_text(path):
+    # 第一步：试打开（只为了知道文件在不在）
+    # 第二步：打开成功，试读内容，读不出来就放过
+    # 第三步：到这里说明不是 utf-8，重新用 gbk 打开读
+    # 第四步：gbk 也不行，或文件没了，返回空串
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            try:
+                return f.read()
+            except UnicodeDecodeError:
+                pass
+    except FileNotFoundError:
+        return ""
+
+    try:
+        with open(path, "r", encoding="gbk") as f:
+             return f.read()
+    except (FileNotFoundError,UnicodeDecodeError):
+            return ""

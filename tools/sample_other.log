@@ -1,0 +1,8 @@
+2026-11-24 08:00:12 WARN [hmi] line 4 brightness below threshold
+2026-11-24 08:05:30 WARN [adas] line 9 time 12ms exceeds 10ms
+2026-11-24 08:06:40 ERROR [safety] line 11 detection timeout
+2026-11-24 08:06:41 WARN [adas] line 12 to previous lane
+2026-11-24 08:10:30 ERROR [hmi] line 16 angle out of range
+2026-11-24 08:12:00 WARN [adas] line 18 usage 85%
+2026-11-24 08:15:10 ERROR [hmi] line 22 off event
+2026-11-24 08:20:05 ERROR [hmi] line 25 frozen
